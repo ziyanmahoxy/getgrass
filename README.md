@@ -1,8 +1,8 @@
 # getgrass
-пользуйтесь
+how to use
 
-для одного аккаунта и многа прокся 1user_id.py и proxy_list(for1).txt
+for one account and many proxies 1user_id.py and proxy_list(for1).txt
 
-для множества аккаунтов и к каждому из них по одной прокся foreachuser_id_proxy.py и user_id.txt, proxy_list(all).txt
+for multiple accounts and for each of them one proxy foreachuser_id_proxy.py and user_id.txt, proxy_list(all).txt
 
 
