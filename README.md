@@ -1,5 +1,9 @@
 # getgrass
 how to use
+install python3
+https://www.python.org/ftp/python/3.12.2/python-3.12.2-amd64.exe (windows)
+
+for unix ```sudo apt-get install python3``` or ```sudo yum install python3```
 
 install fakeuseragent
 ```pip install fake_useragent```
