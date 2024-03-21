@@ -84,5 +84,5 @@ async def main():
 
 
 if __name__ == '__main__':
-    #поехали нафик
+    #letsgo
     asyncio.run(main())
