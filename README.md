@@ -18,6 +18,14 @@ install websockets_proxy
 
 ## how to use
 
+#### getting your user id
+
+login to https://app.getgrass.io
+
+press f12 go to console, then type ```allow pasting```, then insert this code
+```localStorage.getItem('userId')```
+
+#### usage command
 for one account and many proxies use 1user_id.py and insert your proxies to proxy_list(for1).txt
 
 then
