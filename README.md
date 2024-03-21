@@ -34,7 +34,9 @@ then insert this code
 #### usage command
 for one account and many proxies use 1user_id.py and insert your proxies to proxy_list(for1).txt
 
-then ```python 1user_id.py```
+then ```python 1user_id.py``` and insert your userid
+
+![0001](https://github.com/im-hanzou/getgrass_bot/blob/main/insert.JPG)
 
 for multiple accounts and for each of them one proxy use foreachuser_id_proxy.py, insert your accounts user ids to user_id.txt and insert your proxies to proxy_list(all).txt
 
