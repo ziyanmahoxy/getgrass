@@ -22,20 +22,22 @@ install websockets_proxy
 
 login to https://app.getgrass.io
 
-press f12 go to console, then type ```allow pasting```, then insert this code
+press f12 go to console, then type ```allow pasting```
+
+![0001](https://github.com/im-hanzou/getgrass_bot/blob/main/pasting.JPG)
+
+then insert this code
 ```localStorage.getItem('userId')```
+
+![0001](https://github.com/im-hanzou/getgrass_bot/blob/main/userid.JPG)
 
 #### usage command
 for one account and many proxies use 1user_id.py and insert your proxies to proxy_list(for1).txt
 
-then
-
-```python 1user_id.py```
+then ```python 1user_id.py```
 
 for multiple accounts and for each of them one proxy use foreachuser_id_proxy.py, insert your accounts user ids to user_id.txt and insert your proxies to proxy_list(all).txt
 
-then
-
-```python foreachuser_id_proxy.py ```
+then ```python foreachuser_id_proxy.py ```
 
 
