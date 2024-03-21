@@ -1,1 +1,1 @@
-#user_id на сайте найти в conlose localStorage.getItem('userId')(если не получается достать напишите allow pasting)
+#find user_id on the site in conlose localStorage.getItem('userId') (if you can't get it, write allow pasting)
