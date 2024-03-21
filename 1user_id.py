@@ -1,4 +1,4 @@
-#скрипт для 1 user_id и целой кучи proxy
+#script for 1 user_id and a whole bunch of proxies
 
 import asyncio
 import random
@@ -73,9 +73,9 @@ async def connect_to_wss(socks5_proxy, user_id):
 
 
 async def main():
-    #user_id на сайте найти в conlose localStorage.getItem('userId')(если не получается достать напишите allow pasting)
-    _user_id = 'userid'
-    #прокси закинуть в файл в формате socks5://username:password@ip:port or socks5://ip:port
+    #find user_id on the site in conlose localStorage.getItem('userId') (if you can't get it, write allow pasting)
+    _user_id = input('Enter your user ID: ')
+    #put the proxy in a file in the format socks5://username:password@ip:port or socks5://ip:port
     with open('proxy_list(for1).txt', 'r') as file:
         socks5_proxy_list = file.read().splitlines()
     
