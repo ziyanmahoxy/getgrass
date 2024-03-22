@@ -1,4 +1,4 @@
-# Getgrass Crot
+# GetGrass Crooter
 ## Installation
 #### Install python3
 - For windows: https://www.python.org/ftp/python/3.12.2/python-3.12.2-amd64.exe 
@@ -17,8 +17,8 @@
 ```localStorage.getItem('userId')```
 ![0001](https://github.com/im-hanzou/getgrass_bot/blob/main/userid.JPG)
 #### Usage command
-- Insert your proxies to ```proxy_list.txt```
-- Then ```python run.py``` and insert your userid
+- Open file ```proxy_list.txt``` and insert your proxies
+- Run ```python run.py``` and insert your userid
 - <img src="https://github.com/im-hanzou/getgrass_bot/blob/main/insert.JPG">
 <!--
 - For multiple accounts and for each of them one proxy
