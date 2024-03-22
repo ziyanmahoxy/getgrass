@@ -1,9 +1,9 @@
 # getgrass
 ## installation
 install python3
-https://www.python.org/ftp/python/3.12.2/python-3.12.2-amd64.exe (windows)
+for windows: https://www.python.org/ftp/python/3.12.2/python-3.12.2-amd64.exe 
 
-for unix ```sudo apt-get install python3``` or ```sudo yum install python3``` or ```sudo dnf install python3```
+for linux distros: ```sudo apt-get install python3``` or ```sudo yum install python3``` or ```sudo dnf install python3```
 ## module install 
 install fakeuseragent
 ```pip install fake_useragent```
