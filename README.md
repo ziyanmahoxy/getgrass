@@ -16,6 +16,9 @@
 - Then insert this code to console
 ```localStorage.getItem('userId')```
 ![0001](https://github.com/im-hanzou/getgrass_bot/blob/main/userid.JPG)
+### Finding proxies
+- You can visit https://github.com/monosans/proxy-list for free proxies
+- Or run finder tool by yourself https://github.com/monosans/proxy-scraper-checker
 #### Usage command
 - Open file ```proxy_list.txt``` and insert your proxies
 - Run ```python run.py``` and insert your userid
