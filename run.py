@@ -26,7 +26,9 @@ async def connect_to_wss(socks5_proxy, user_id):
             ssl_context = ssl.create_default_context()
             ssl_context.check_hostname = False
             ssl_context.verify_mode = ssl.CERT_NONE
-            uri = "wss://proxy.wynd.network:4650/"
+            #uri = "wss://proxy.wynd.network:4650/"
+            urilist = ["wss://proxy.wynd.network:4444/","wss://proxy.wynd.network:4650/"]
+            uri = random.choice(urilist)
             server_hostname = "proxy.wynd.network"
             proxy = Proxy.from_url(socks5_proxy)
             async with proxy_connect(uri, proxy=proxy, ssl=ssl_context, server_hostname=server_hostname,
@@ -57,7 +59,7 @@ async def connect_to_wss(socks5_proxy, user_id):
                                 "user_agent": custom_headers['User-Agent'],
                                 "timestamp": int(time.time()),
                                 "device_type": "extension",
-                                "version": "3.3.2"
+                                "version": "4.26.2"
                             }
                         }
                         logger.debug(auth_response)
