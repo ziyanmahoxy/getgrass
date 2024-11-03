@@ -71,7 +71,7 @@ async def connect_to_wss(socks5_proxy, user_id):
                         logger.debug(f"Sending PONG response: {pong_response}")
                         await websocket.send(json.dumps(pong_response))
         except Exception as e:
-            logger.error(f"Error with proxy {socks5_proxy}: {e}"
+            logger.error(f"Error with proxy {socks5_proxy}: {e}")
 
 
 async def main():
