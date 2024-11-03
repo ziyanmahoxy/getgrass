@@ -1,3 +1,5 @@
 fake_useragent
 loguru
 websockets_proxy
+websockets
+requests
