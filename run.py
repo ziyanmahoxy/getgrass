@@ -22,7 +22,7 @@ async def connect_to_wss(socks5_proxy, user_id):
             await asyncio.sleep(random.randint(1, 10) / 10)
             custom_headers = {
                 "User-Agent": random_user_agent,
-                "Origin": "chrome-extension://lkbnfiajjmbhnfledhphioinpickokdi"
+                "Origin": "chrome-extension://ilehaonighjijnmpnagapkhpcdbhclfg"
             }
             ssl_context = ssl.create_default_context()
             ssl_context.check_hostname = False
@@ -60,7 +60,7 @@ async def connect_to_wss(socks5_proxy, user_id):
                                 "timestamp": int(time.time()),
                                 "device_type": "extension",
                                 "version": "4.26.2",
-                                "extension_id": "lkbnfiajjmbhnfledhphioinpickokdi"
+                                "extension_id": "ilehaonighjijnmpnagapkhpcdbhclfg"
                             }
                         }
                         logger.debug(f"Sending AUTH response: {auth_response}")
