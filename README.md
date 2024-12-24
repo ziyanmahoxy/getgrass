@@ -56,11 +56,11 @@ protocol://user:pass@127.0.0.1:8080
 ```
 - Windows and Termux:
 ```bash
-python runv2.py
+python run.py
 ```
 - Unix:
 ```bash
-python3 runv2.py
+python3 run.py
 ```
 >Then insert your grass acount UserID
 # Notes
