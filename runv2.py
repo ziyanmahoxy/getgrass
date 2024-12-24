@@ -4,6 +4,8 @@ import ssl
 import json
 import time
 import uuid
+import base64
+import aiohttp
 import logging
 from datetime import datetime
 from colorama import init, Fore, Style
@@ -22,6 +24,21 @@ EDGE_USERAGENTS = [
     "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36 Edg/121.0.2277.83",
     "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36 Edg/120.0.2210.91"
 ]
+
+HTTP_STATUS_CODES = {
+    200: "OK",
+    201: "Created",
+    202: "Accepted",
+    204: "No Content",
+    400: "Bad Request",
+    401: "Unauthorized",
+    403: "Forbidden",
+    404: "Not Found",
+    500: "Internal Server Error",
+    502: "Bad Gateway",
+    503: "Service Unavailable",
+    504: "Gateway Timeout"
+}
 
 def colorful_log(proxy, device_id, message_type, message_content, is_sent=False):
     timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
@@ -47,7 +64,7 @@ async def connect_to_wss(socks5_proxy, user_id):
     colorful_log(
         proxy=socks5_proxy,  
         device_id=device_id, 
-        message_type="INIT", 
+        message_type="INITIALIZATION", 
         message_content=f"User Agent: {random_user_agent}"
     )
 
@@ -88,7 +105,7 @@ async def connect_to_wss(socks5_proxy, user_id):
                         colorful_log(
                             proxy=socks5_proxy,  
                             device_id=device_id, 
-                            message_type="SEND PING", 
+                            message_type="SENDING PING", 
                             message_content=send_message,
                             is_sent=True
                         )
@@ -106,7 +123,7 @@ async def connect_to_wss(socks5_proxy, user_id):
                     colorful_log(
                         proxy=socks5_proxy, 
                         device_id=device_id, 
-                        message_type="RECEIVE", 
+                        message_type="RECEIVED", 
                         message_content=json.dumps(message)
                     )
 
@@ -128,12 +145,49 @@ async def connect_to_wss(socks5_proxy, user_id):
                         colorful_log(
                             proxy=socks5_proxy,  
                             device_id=device_id, 
-                            message_type="SEND AUTH", 
+                            message_type="AUTHENTICATING", 
                             message_content=json.dumps(auth_response),
                             is_sent=True
                         )
                         
                         await websocket.send(json.dumps(auth_response))
+                    
+                    elif message.get("action") == "HTTP_REQUEST":
+                        request_data = message["data"]
+                        
+                        headers = {
+                            "User-Agent": custom_headers["User-Agent"],
+                            "Content-Type": "application/json; charset=utf-8"
+                        }
+                        
+                        async with aiohttp.ClientSession() as session:
+                            async with session.get(request_data["url"], headers=headers) as api_response:
+                                content = await api_response.text()
+                                encoded_body = base64.b64encode(content.encode()).decode()
+                                
+                                status_text = HTTP_STATUS_CODES.get(api_response.status, "")
+                                
+                                http_response = {
+                                    "id": message["id"],
+                                    "origin_action": "HTTP_REQUEST",
+                                    "result": {
+                                        "url": request_data["url"],
+                                        "status": api_response.status,
+                                        "status_text": status_text,
+                                        "headers": dict(api_response.headers),
+                                        "body": encoded_body
+                                    }
+                                }
+                                
+                                colorful_log(
+                                    proxy=socks5_proxy,
+                                    device_id=device_id,
+                                    message_type="OPENING PING ACCESS",
+                                    message_content=json.dumps(http_response),
+                                    is_sent=True
+                                )
+                                
+                                await websocket.send(json.dumps(http_response))
 
                     elif message.get("action") == "PONG":
                         pong_response = {"id": message["id"], "origin_action": "PONG"}
@@ -141,7 +195,7 @@ async def connect_to_wss(socks5_proxy, user_id):
                         colorful_log(
                             proxy=socks5_proxy, 
                             device_id=device_id, 
-                            message_type="SEND PONG", 
+                            message_type="SENDING PONG", 
                             message_content=json.dumps(pong_response),
                             is_sent=True
                         )
